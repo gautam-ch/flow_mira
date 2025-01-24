@@ -1,0 +1,38 @@
+# Version format ex. "0.0.1"
+version: "0.0.1"                            # Flow specification version
+
+# Basic metadata for the agent
+metadata:
+  name: "hindisong"       # Unique identifier
+  description: "A flow that generates Hindi song lyrics based on emotions" 
+  author: "gautamch"                          
+  tags: ["music", "lyrics", "hindi-songs"]  
+  private: false                            
+
+# Define the input variables required
+inputs:
+  emotion:                                  
+    type: string                            
+    description: "The emotion you want the song to reflect"
+    required: true
+    example: "pyaar"  # Hindi word for love
+  theme:                                    
+    type: string                            
+    description: "The theme or subject for the song (optional)"
+    required: false
+    example: "chand"  # Hindi word for the moon
+
+# LLM configuration
+model:
+  provider: "anthropic"                     
+  name: "claude-3.5-sonnet"                
+
+# Prompt template configuration
+prompt: |
+  You are a Bollywood lyricist known for writing Hindi songs that capture deep emotions and vivid imagery. Based on the provided emotion and optional theme, write poetic and catchy Hindi song lyrics that can be used in a Bollywood movie.
+
+  Emotion: {emotion}
+  Theme (optional): {theme}
+
+  Please create beautiful and meaningful Hindi song lyrics reflecting the above inputs.
+
